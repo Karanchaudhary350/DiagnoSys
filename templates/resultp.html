@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<style type='text/css'>
+    body {
+        /* background-image: url(static/result.png); */
+        background-position: center;
+        background-size: cover;
+        font-family: sans-serif;
+        margin-top: 40px;
+
+    }
+
+    .regform {
+        width: 800px;
+        background-color: rgba(253, 252, 252, 0.8);
+        margin: auto;
+        color: #0f0f0f;
+        padding: 10px 0px 10px 0px;
+        text-align: center;
+        border-radius: 15px 15px 0px 0px;
+
+    }
+
+    .main-form {
+        width: 800px;
+        margin: auto;
+        background-color: rgb(0, 0, 0, 0.7);
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 20px;
+        color: #FFFFFF;
+    }
+
+    .form-group {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    p{
+        font-size:20px;
+        font-family: sans-serif;
+    }
+</style>
+
+
+<head>
+     <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+    href=
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link href="static/assets/css/main.css" rel="stylesheet">
+    <title>Pneumonia Detection</title>
+</head>
+
+<body>
+    <header id="header" class="header align-items-center fixed-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+    
+          <a href="/" class="logo align-items-center d-flex  me-auto me-lg-0">
+            
+            <i class="fa fa-user-md"></i>
+            <h1>DiagnoSys</h1>
+          </a>
+    <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          
+          <li><a href="services.html" class="active">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+    </div>
+    <div class="mainclass">
+    
+
+    <div class='regform mt-3'>
+        <h1>Pneumonia Test Results</h1>
+    </div>
+
+    <div class='main-form'>
+        <div >
+            <div class="row">
+                <div class="col">
+                    <img src="static/uploads/{{filename}}"
+                        style='width:250px;height:250px;margin-top: 30px;margin-bottom:30px;'>
+                </div>
+
+                <div class="col"  style='margin-top: 30px;margin-bottom:30px;'>
+                    <p>First Name : {{fn}}</p>
+                    <p>Last Name : {{ln}}</p>
+                    <p>Age : {{age}}</p>
+                    <p> Gender: {{gender}}</p>
+
+                    {% if r==1 %}
+                    <div>
+                        <p> Result:<i> POSITIVE </i></p>
+                    </div>
+
+
+                    {% else %}
+                    <div>
+                        <p> Result:<i> NEGATIVE </i></p>
+                    </div>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
