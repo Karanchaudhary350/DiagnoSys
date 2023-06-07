@@ -14,7 +14,7 @@ from tensorflow.keras.applications.vgg16 import preprocess_input
 
 # Loading Models
 covid_model = load_model('models/covid.h5')
-braintumor_model = load_model('models/braintumor.h5')
+breastcancer_model = joblib.load('models/breast_cancer_model.pkl')
 alzheimer_model = load_model('models/alzheimer_model.h5')
 pneumonia_model = load_model('models/pneumonia_model.h5')
 
@@ -94,9 +94,9 @@ def services():
     return render_template('services.html')
 
 
-@app.route('/braintumor.html')
+@app.route('/breastcancer.html')
 def brain_tumor():
-    return render_template('braintumor.html')
+    return render_template('breastcancer.html')
 
 
 @app.route('/contact.html')
@@ -153,8 +153,8 @@ def resultc():
             return redirect(request.url)
 
 
-@app.route('/resultbt', methods=['POST'])
-def resultbt():
+@app.route('/resultbc', methods=['POST'])
+def resultbc():
     if request.method == 'POST':
         firstname = request.form['firstname']
         lastname = request.form['lastname']
@@ -162,26 +162,15 @@ def resultbt():
         phone = request.form['phone']
         gender = request.form['gender']
         age = request.form['age']
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            flash('Image successfully uploaded and displayed below')
-            img = cv2.imread('static/uploads/'+filename)
-            img = crop_imgs([img])
-            img = img.reshape(img.shape[1:])
-            img = preprocess_imgs([img], (224, 224))
-            pred = braintumor_model.predict(img)
-            if pred < 0.5:
-                pred = 0
-            else:
-                pred = 1
-            # pb.push_sms(pb.devices[0],str(phone), 'Hello {},\nYour Brain Tumor test results are ready.\nRESULT: {}'.format(firstname,['NEGATIVE','POSITIVE'][pred]))
-            return render_template('resultbt.html', filename=filename, fn=firstname, ln=lastname, age=age, r=pred, gender=gender)
-
-        else:
-            flash('Allowed image types are - png, jpg, jpeg')
-            return redirect(request.url)
+        cpm = request.form['concave_points_mean']
+        am = request.form['area_mean']
+        rm = request.form['radius_mean']
+        pm = request.form['perimeter_mean']
+        cm = request.form['concavity_mean']
+        pred = breastcancer_model.predict(
+            np.array([cpm, am, rm, pm, cm]).reshape(1, -1))
+        # pb.push_sms(pb.devices[0],str(phone), 'Hello {},\nYour Breast Cancer test results are ready.\nRESULT: {}'.format(firstname,['NEGATIVE','POSITIVE'][pred]))
+        return render_template('resultbc.html', fn=firstname, ln=lastname, age=age, r=pred, gender=gender)
 
 @app.route('/resulta', methods=['GET', 'POST'])
 def resulta():
