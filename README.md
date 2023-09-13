@@ -48,7 +48,7 @@ flask run
 ## Dataset
 The datasets used for training and testing the machine learning models in DiagnoSys are not included in this repository. Please refer to the following sources to obtain the necessary datasets:
 
-- COVID-19 Dataset: [https://drive.google.com/drive/u/0/folders/1x3pOyxLgvM0bl1YePWQRlgOLi87e9dF]
+- COVID-19 Dataset: [https://drive.google.com/drive/u/0/folders/1x3pOyxLgvM0bl1YePWQRlgOLi87e9dF_]
 - Alzheimer's Disease Dataset: [https://www.kaggle.com/datasets/yasserhessein/dataset-alzheimer]
 - Breast Cancer Dataset: [https://drive.google.com/file/d/1yVVtLvsWBJS9OxfXWq3D_OhKg-Du3ITi/view]
 - Pneumonia Dataset: [https://www.kaggle.com/datasets/tolgadincer/labeled-chest-xray-images]
